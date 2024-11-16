@@ -1,8 +1,8 @@
-package com.laba.okr;
+package com.mgkct.okr;
 
+import android.os.Bundle;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -37,11 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     double alpha = Double.parseDouble(inputAlpha.getText().toString());
 
                     // Проверка условий
-                    if (a <= 0 || b <= 0) {
-                        showErrorToast("Значения a и b должны быть положительными!");
-                        return;
-                    }
-                    if (alpha <= 0 || alpha > 90) {
+                    if (alpha <=0 || alpha > 90) {
                         showWarningToast("Угол α должен быть в диапазоне (0, 90] градусов!");
                         return;
                     }
@@ -68,18 +64,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Изменение стиля уведомления
         View view = toast.getView();
-        GradientDrawable background = new GradientDrawable();
-        background.setColor(Color.parseColor("#FFCDD2")); // Красный цвет
-        background.setCornerRadius(16);
-        view.setBackground(background);
+        if (view != null) { // Проверка на null
+            GradientDrawable background = new GradientDrawable();
+            background.setColor(Color.parseColor("#FFCDD2")); // Красный цвет
+            background.setCornerRadius(16);
+            view.setBackground(background);
 
-        TextView text = view.findViewById(android.R.id.message);
-        text.setTextColor(Color.BLACK);
-        text.setTextSize(16);
-        text.setGravity(Gravity.CENTER);
+            TextView text = view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setTextSize(16);
+            text.setGravity(Gravity.CENTER);
 
-        toast.setGravity(Gravity.BOTTOM, 0, 150);
-        toast.show();
+            toast.setGravity(Gravity.BOTTOM, 0, 150);
+            toast.show();
+        } else {
+            // В случае ошибки вызова представления, покажем стандартный Toast
+            toast.show();
+        }
     }
 
     // Метод для отображения предупреждений (желтое уведомление)
@@ -88,17 +89,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Изменение стиля уведомления
         View view = toast.getView();
-        GradientDrawable background = new GradientDrawable();
-        background.setColor(Color.parseColor("#FFF9C4")); // Желтый цвет
-        background.setCornerRadius(16);
-        view.setBackground(background);
+        if (view != null) { // Проверка на null
+            GradientDrawable background = new GradientDrawable();
+            background.setColor(Color.parseColor("#FFF9C4")); // Желтый цвет
+            background.setCornerRadius(16);
+            view.setBackground(background);
 
-        TextView text = view.findViewById(android.R.id.message);
-        text.setTextColor(Color.BLACK);
-        text.setTextSize(16);
-        text.setGravity(Gravity.CENTER);
+            TextView text = view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setTextSize(16);
+            text.setGravity(Gravity.CENTER);
 
-        toast.setGravity(Gravity.BOTTOM, 0, 150);
-        toast.show();
-    }
-}
+            toast.setGravity(Gravity.BOTTOM, 0, 150);
+            toast.show();
+        } else {
+            // В случае ошибки вы
